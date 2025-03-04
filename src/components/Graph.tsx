@@ -69,7 +69,7 @@ export function Graph() {
             <CardContent>
                 <ChartContainer config={chartConfig}>
                     <LineChart
-                        accessibilityLayer
+                        accessibilityLayer 
                         data={chartData}
                         margin={{
                             top: 24,

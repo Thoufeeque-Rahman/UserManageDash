@@ -49,7 +49,7 @@ export default function UsersManagement() {
             <Routes>
                 <Route path="/" element={<UsersGraph />} />
                 <Route path="/users" element={<UsersManageList />} />
-                <Route path="/" element={<UserProfileCard />} />
+                <Route path="/user" element={<UserProfileCard />} />
             </Routes>
         </div>
     )
