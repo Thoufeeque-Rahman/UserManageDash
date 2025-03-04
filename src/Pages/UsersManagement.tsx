@@ -1,6 +1,9 @@
 import { MonitorCheck, ShieldCheck, UserCheck, Users } from 'lucide-react'
 import CountCard from '../components/CountCard';
 import UserProfileCard from '../components/UserProfileCard';
+import { Route, Routes } from 'react-router';
+import UsersGraph from '../components/UsersGraph';
+import UsersManageList from '../components/UsersManageList';
 
 export default function UsersManagement() {
     const items = [
@@ -43,7 +46,11 @@ export default function UsersManagement() {
                     ))
                 }
             </div>
-            <UserProfileCard />
+            <Routes>
+                <Route path="/" element={<UsersGraph />} />
+                <Route path="/users" element={<UsersManageList />} />
+                <Route path="/" element={<UserProfileCard />} />
+            </Routes>
         </div>
     )
 }

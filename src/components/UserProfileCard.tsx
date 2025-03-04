@@ -103,7 +103,6 @@ export default function UserProfileCard() {
                         <div className="gap-4 grid grid-cols-4">
                             <Button variant='outline' className='col-span-2'><SquarePen /> Edit Profile</Button>
                             <Button variant='destructive' className='col-span-2'><Trash2 /> Delete Profile</Button>
-
                         </div>
                     </div>
                 </div>
