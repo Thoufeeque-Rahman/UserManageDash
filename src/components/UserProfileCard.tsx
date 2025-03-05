@@ -4,7 +4,6 @@ import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { profile } from 'console';
 
 export default function UserProfileCard() {
 

@@ -13,7 +13,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, CircleCheck, CircleX, MoreHorizontal } from "lucide-react"
+import { ArrowUpDown, ChevronDown, CircleCheck, CircleX } from "lucide-react"
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import { Checkbox } from "./ui/checkbox"
@@ -21,9 +21,6 @@ import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "./ui/dropdown-menu"
 import { Input } from "./ui/input"

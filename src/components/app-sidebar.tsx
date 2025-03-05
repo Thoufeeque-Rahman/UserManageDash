@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings, User, Users } from "lucide-react"
+import { Home, User, Users } from "lucide-react"
 
 import {
   Sidebar,
@@ -41,7 +41,7 @@ const items = [
   // },
 ]
 
-export function AppSidebar({ children } : { children: React.ReactNode }) {
+export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
