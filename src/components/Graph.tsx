@@ -76,6 +76,7 @@ export function Graph() {
                             left: 24,
                             right: 24,
                         }}
+                        height={200} // Adjust the height here
                     >
                         <CartesianGrid vertical={false} />
                         <ChartTooltip

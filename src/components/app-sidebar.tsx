@@ -51,7 +51,7 @@ export function AppSidebar({ children } : { children: React.ReactNode }) {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton className="hover:text-[#e40404]" asChild>
                     <Link to={item.url}>
                       <item.icon size={24} /> 
                       <span>{item.title}</span>

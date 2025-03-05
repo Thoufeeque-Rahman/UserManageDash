@@ -50,6 +50,7 @@ export default function UsersManagement() {
                 <Route path="/" element={<UsersGraph />} />
                 <Route path="/users" element={<UsersManageList />} />
                 <Route path="/user" element={<UserProfileCard />} />
+                <Route path="/user/:id" element={<UserProfileCard />} />
             </Routes>
         </div>
     )

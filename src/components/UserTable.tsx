@@ -36,7 +36,7 @@ import {
     TableRow,
 } from "./ui/table"
 import userProfile from '../assets/images/userProfilePhotos/001.jpg';
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 
 enum Role {
     READER = 'READER',
@@ -72,7 +72,7 @@ const data: User[] = [
         id: 2,
         name: 'Jaseel Km',
         email: 'jhondoe1@gmail.com',
-        profile_image_url: userProfile,
+        profile_image_url: 'https://avatars.githubusercontent.com/u/123951774?v=4',
         user_details: {
             mobile: '9876543210',
             address: 'Kerala, India',
@@ -115,95 +115,82 @@ export type User = {
     last_login: Date,
 }
 
-export const columns: ColumnDef<User>[] = [
-    {
-        id: "select",
-        header: ({ table }) => (
-            <Checkbox
-                checked={
-                    table.getIsAllPageRowsSelected() ||
-                    (table.getIsSomePageRowsSelected() && "indeterminate")
-                }
-                onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-                aria-label="Select all"
-            />
-        ),
-        cell: ({ row }) => (
-            <Checkbox
-                checked={row.getIsSelected()}
-                onCheckedChange={(value) => row.toggleSelected(!!value)}
-                aria-label="Select row"
-            />
-        ),
-        enableSorting: false,
-        enableHiding: false,
-    },
-    {
-        accessorKey: "name",
-        header: "Name",
-        cell: ({ row }) => (
-            <Link to='/user'><div className="capitalize">{row.getValue("name")}</div></Link>
-        ),
-    },
-    {
-        accessorKey: "email",
-        header: ({ column }) => {
-            return (
-                <Button
-                    variant="ghost"
-                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                >
-                    Email
-                    <ArrowUpDown />
-                </Button>
-            )
-        },
-        cell: ({ row }) => <Link to='/user'><div className="lowercase">{row.getValue("email")}</div></Link>,
-    },
-    {
-        accessorKey: "status",
-        header: () => <div className="text-left">Status</div>,
-        cell: ({ row }) => {
-            return row.getValue("status") === 'Active'
-                ?
-                <Badge className='bg-green-600 text-white rounded-full justify-end'><CircleCheck /> Active</Badge>
-                :
-                <Badge className='bg-red-600 text-white rounded-full'><CircleX /> Inactive</Badge>
-        }
-        ,
-    },
-    // {
-    //     id: "actions",
-    //     enableHiding: false,
-    //     cell: ({ row }) => {
-    //         const payment = row.original
-
-    //         return (
-    //             <DropdownMenu>
-    //                 <DropdownMenuTrigger asChild>
-    //                     <Button variant="ghost" className="h-8 w-8 p-0">
-    //                         <span className="sr-only">Open menu</span>
-    //                         <MoreHorizontal />
-    //                     </Button>
-    //                 </DropdownMenuTrigger>
-    //                 <DropdownMenuContent align="end">
-    //                     <DropdownMenuLabel>Actions</DropdownMenuLabel>
-    //                     <DropdownMenuItem
-    //                         onClick={() => navigator.clipboard.writeText(payment.id)}
-    //                     >
-    //                         Copy payment ID
-    //                     </DropdownMenuItem>
-    //                     <DropdownMenuSeparator />
-    //                     <DropdownMenuItem>View customer</DropdownMenuItem>
-    //                     <DropdownMenuItem>View payment details</DropdownMenuItem>
-    //                 </DropdownMenuContent>
-    //             </DropdownMenu>
-    //         )
-    //     },
-    // },
-]
 
 export function UserTable() {
+    const navigate = useNavigate();
+
+    const handleUserProfile = (id: number) => {
+        const user = data.find(user => user.id === id);
+        if (user) {
+
+            navigate(`/user/${id}`, { state: { userData: user } });
+        }
+        navigate(`/user/${id}`);
+        console.log('User Profile Clicked', id);
+    }
+
+    const columns: ColumnDef<User>[] = [
+        {
+            id: "select",
+            header: ({ table }) => (
+                <Checkbox
+                    checked={
+                        table.getIsAllPageRowsSelected() ||
+                        (table.getIsSomePageRowsSelected() && "indeterminate")
+                    }
+                    onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+                    aria-label="Select all"
+                />
+            ), 
+            cell: ({ row }) => (
+                <Checkbox
+                    checked={row.getIsSelected()}
+                    onCheckedChange={(value) => row.toggleSelected(!!value)}
+                    aria-label="Select row"
+                />
+            ),
+            enableSorting: false,
+            enableHiding: false,
+        },
+        {
+
+            accessorKey: "name",
+            header: "Name",
+            cell: ({ row }) => (
+                <div className="capitalize cursor-pointer" onClick={() => handleUserProfile(row.original.id)}>
+                    {row.getValue("name")}
+                </div>
+            ),
+        },
+        {
+            accessorKey: "email",
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                        Email
+                        <ArrowUpDown />
+                    </Button>
+                )
+            },
+            cell: ({ row }) => <Link to='/user'><div className="lowercase" onClick={() => handleUserProfile(row.original.id)}>{row.getValue("email")}</div></Link>,
+        },
+        {
+            accessorKey: "status",
+            header: () => <div className="text-left">Status</div>,
+            cell: ({ row }) => {
+                return row.getValue("status") === 'Active'
+                    ?
+                    <Badge className='bg-green-600 text-white rounded-full justify-end'><CircleCheck /> Active</Badge>
+                    :
+                    <Badge className='bg-red-600 text-white rounded-full'><CircleX /> Inactive</Badge>
+            }
+            ,
+        },
+    ]
+
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
