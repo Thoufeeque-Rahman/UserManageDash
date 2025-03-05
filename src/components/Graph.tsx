@@ -56,14 +56,14 @@ const chartConfig = {
 
 export function Graph() {
     return (
-        <Card>
+        <Card className="w-[50%]">
             <CardHeader>
                 <div className="flex gap-2 ms-auto">
                     <Link to="/users">
                         <Button>View more <ArrowRight /></Button>
                     </Link>
                 </div>
-                <CardTitle>Line Chart - Dots Colors</CardTitle>
+                <CardTitle>Line Chart - Dots Colors (Demo)</CardTitle>
                 <CardDescription>January - June 2024</CardDescription>
             </CardHeader>
             <CardContent>
