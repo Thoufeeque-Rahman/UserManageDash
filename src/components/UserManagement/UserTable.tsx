@@ -14,16 +14,16 @@ import {
     useReactTable,
 } from "@tanstack/react-table"
 import { ArrowUpDown, ChevronDown, CircleCheck, CircleX } from "lucide-react"
-import { Badge } from "./ui/badge"
-import { Button } from "./ui/button"
-import { Checkbox } from "./ui/checkbox"
+import { Badge } from "../ui/badge"
+import { Button } from "../ui/button"
+import { Checkbox } from "../ui/checkbox"
 import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuTrigger,
-} from "./ui/dropdown-menu"
-import { Input } from "./ui/input"
+} from "../ui/dropdown-menu"
+import { Input } from "../ui/input"
 import {
     Table,
     TableBody,
@@ -31,8 +31,8 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "./ui/table"
-import userProfile from '../assets/images/userProfilePhotos/001.jpg';
+} from "../ui/table"
+import userProfile from '../../assets/images/userProfilePhotos/001.jpg';
 import { Link, useNavigate } from "react-router"
 
 enum Role {
@@ -120,9 +120,9 @@ export function UserTable() {
         const user = data.find(user => user.id === id);
         if (user) {
 
-            navigate(`/user/${id}`, { state: { userData: user } });
+            navigate(`/user-management/user/${id}`, { state: { userData: user } });
         }
-        navigate(`/user/${id}`);
+        navigate(`/user-management/user/${id}`);
         console.log('User Profile Clicked', id);
     }
 
@@ -172,7 +172,7 @@ export function UserTable() {
                     </Button>
                 )
             },
-            cell: ({ row }) => <Link to='/user'><div className="lowercase" onClick={() => handleUserProfile(row.original.id)}>{row.getValue("email")}</div></Link>,
+            cell: ({ row }) => <Link to='/user-management/user'><div className="lowercase" onClick={() => handleUserProfile(row.original.id)}>{row.getValue("email")}</div></Link>,
         },
         {
             accessorKey: "status",
@@ -217,14 +217,14 @@ export function UserTable() {
 
     return (
         <div className="w-full">
-            <div className="flex items-center py-4">
+            <div className="flex items-center py-4 ">
                 <Input
                     placeholder="Filter emails..."
                     value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
                     onChange={(event) =>
                         table.getColumn("email")?.setFilterValue(event.target.value)
                     }
-                    className="max-w-sm"
+                    className="max-w-sm bg-white"
                 />
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -253,14 +253,14 @@ export function UserTable() {
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
-            <div className="rounded-md border">
+            <div className="rounded-md border bg-white">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead key={header.id}>
+                                        <TableHead className="text-[#e40404]/75" key={header.id}>
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(

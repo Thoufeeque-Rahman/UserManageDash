@@ -1,6 +1,8 @@
+import { Route, Routes } from 'react-router'
 import { AppSidebar } from './components/app-sidebar'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from './components/ui/sidebar'
-import UsersManagement from './Pages/UsersManagement'
+import UsersManagement from './Pages/UserManagement/UsersManagement'
+import PermissionsManagement from './Pages/PermissionsManagement/PermissionsManagement'
 
 function App() {
 
@@ -11,7 +13,10 @@ function App() {
         <AppSidebar />
         <SidebarInset>
           <SidebarTrigger />
-          <UsersManagement />
+          <Routes> 
+            <Route path='/user-management/*' element={<UsersManagement />} />
+            <Route path='/permissions-management/*' element={<PermissionsManagement />} />
+          </Routes>
         </SidebarInset>
       </SidebarProvider>
     </>

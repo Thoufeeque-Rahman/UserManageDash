@@ -10,15 +10,15 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-} from "./ui/card"
+} from "../ui/card"
 import {
     ChartConfig,
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from "./ui/chart"
+} from "../ui/chart"
 import { Link } from "react-router"
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 const chartData = [
     { browser: "chrome", visitors: 275, fill: "red" },
     { browser: "safari", visitors: 200, fill: "blue" },
@@ -59,7 +59,7 @@ export function Graph() {
         <Card className="w-[50%]">
             <CardHeader>
                 <div className="flex gap-2 ms-auto">
-                    <Link to="/users">
+                    <Link to="/user-management/users">
                         <Button>View more <ArrowRight /></Button>
                     </Link>
                 </div>

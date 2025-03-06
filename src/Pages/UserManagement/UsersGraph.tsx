@@ -1,4 +1,4 @@
-import { Graph } from "./Graph";
+import { Graph } from "../../components/UserManagement/Graph";
 
 export default function UsersGraph() {
     return (

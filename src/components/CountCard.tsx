@@ -5,8 +5,8 @@ type CountCardProps = {
     title: string;
     count: number;
     icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
-    percentage: string;
-    color: string;
+    percentage?: string;
+    color?: string;
 }
 
 export default function CountCard({ title, count, icon, percentage, color }: CountCardProps) {
@@ -17,7 +17,7 @@ export default function CountCard({ title, count, icon, percentage, color }: Cou
                 {React.createElement(icon, { size: 20, strokeWidth: 2, opacity: 0.5, className: 'ms-auto' })}
             </div>
             <h1 className='flex text-4xl font-bold text-[#e40404]'>+{count}</h1>
-            <p className='opacity-75 text-sm'>{percentage} from last month</p>
+            {percentage && <p className='opacity-75 text-sm'>{percentage} from last month</p>}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { Home, User, Users } from "lucide-react"
+import { Home, Lock, Scale, Shield, User, UserRoundCog, Users } from "lucide-react"
 
 import {
   Sidebar,
@@ -6,57 +6,117 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
 } from "./ui/sidebar"
-import { Link } from "react-router"
+import { Link } from "react-router-dom"
 
 // Menu items.
-const items = [
-  {
-    title: "Home",
-    url: "/",
-    icon: Home,
-  },
-  {
-    title: "Users",
-    url: "/users",
-    icon: Users,
-  },
-  {
-    title: "User",
-    url: "/user",
-    icon: User,
-  },
-  // {
-  //   title: "Search",
-  //   url: "#",
-  //   icon: Search,
-  // },
-  // {
-  //   title: "Settings",
-  //   url: "#",
-  //   icon: Settings,
-  // },
-]
+type NavItem = {
+  title: string
+  url: string
+  icon?: any
+  items?: NavItem[]
+  isActive?: boolean
+}
+
+const data: { navMain: NavItem[] } = {
+  navMain: [
+    {
+      title: "User Management",
+      url: "/user-management",
+      icon: UserRoundCog,
+      items: [
+        {
+          title: "Users",
+          url: "/user-management/users",
+          icon: Users,
+          // isActive: true,
+        },
+        {
+          title: "User",
+          url: "/user-management/user",
+          icon: User,
+        },
+      ]
+    },
+    {
+      title: "Permissions Management",
+      url: "/permissions-management",
+      icon: Scale,
+      items: [
+        {
+          title: "Roles",
+          url: "/permissions-management/roles",
+          icon: Shield,
+        },
+        {
+          title: "Permissions",
+          url: "/permissions-management/permissions",
+          icon: Lock,
+        },
+      ]
+    },
+    // {
+    //   title: "User",
+    //   url: "/user",
+    //   icon: User,
+    // },
+    // {
+    //   title: "Search",
+    //   url: "#",
+    //   icon: Search,
+    // },
+    // {
+    //   title: "Settings",
+    //   url: "#",
+    //   icon: Settings,
+    // },
+  ]
+}
 
 export function AppSidebar() {
   return (
     <Sidebar>
+      <SidebarHeader>
+        <h1 className="text-3xl font-bold text-[#e40404] mt-4 ms-2">Thelicham</h1>
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-[#e40404] text-3xl font-bold my-4">Thelicham</SidebarGroupLabel>
+          {/* <SidebarGroupLabel className="">Thelicham</SidebarGroupLabel> */}
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
+              {data.navMain.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton className="hover:text-[#e40404]" asChild>
-                    <Link to={item.url}>
-                      <item.icon size={24} /> 
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
+                  <Link to={item.url}>
+                    <SidebarMenuButton className="hover:text-[#e40404]" asChild>
+                      <div className="flex">
+                        <item.icon size={24} />
+                        <span>{item.title}</span>
+                      </div>
+                    </SidebarMenuButton>
+                  </Link>
+                  {item.items?.length ? (
+                    <SidebarMenuSub>
+                      {item.items.map((item) => (
+                        <SidebarMenuSubItem key={item.title}>
+                          <Link to={item.url}>
+                            <SidebarMenuSubButton className="hover:text-[#e40404]" asChild isActive={item.isActive ? true : false}>
+                              <div className="flex">
+                                <item.icon size={20} />
+                                {item.title}
+                              </div>
+                            </SidebarMenuSubButton>
+                          </Link>
+                        </SidebarMenuSubItem>
+                      ))}
+                    </SidebarMenuSub>
+                  ) : null}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
@@ -66,18 +126,3 @@ export function AppSidebar() {
     </Sidebar>
   )
 }
-
-// import React, { ReactNode } from 'react';
-
-// interface AppSidebarProps {
-//   children: ReactNode;
-// }
-
-// export const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
-//   return (
-//     <div>
-//       {/* Sidebar content */}
-//       {children}
-//     </div>
-//   );
-// };
