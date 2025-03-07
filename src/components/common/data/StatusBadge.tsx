@@ -1,7 +1,7 @@
 
 import { cn } from "@/lib/utils";
 
-type StatusType = "published" | "draft" | "pending" | "archived" | "rejected" | "success" | "warning" | "error" | "info";
+type StatusType = "published" | "draft" | "pending" | "archived" | "rejected" | "success" | "warning" | "error" | "info" | 'active' | 'inactive';
 
 interface StatusBadgeProps {
     status: StatusType | string;
@@ -20,6 +20,7 @@ export function StatusBadge({
         switch (status.toLowerCase()) {
             case "published":
             case "success":
+            case "active":
                 return "bg-emerald-100/80 text-emerald-800 border-emerald-200/50 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-900/50";
             case "draft":
                 return "bg-slate-100/80 text-slate-800 border-slate-200/50 dark:bg-slate-950/40 dark:text-slate-400 dark:border-slate-900/50";
@@ -29,6 +30,7 @@ export function StatusBadge({
             case "archived":
                 return "bg-indigo-100/80 text-indigo-800 border-indigo-200/50 dark:bg-indigo-950/40 dark:text-indigo-400 dark:border-indigo-900/50";
             case "rejected":
+            case "inactive":
             case "error":
                 return "bg-rose-100/80 text-rose-800 border-rose-200/50 dark:bg-rose-950/40 dark:text-rose-400 dark:border-rose-900/50";
             case "info":
