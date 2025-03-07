@@ -13,7 +13,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, CircleCheck, CircleX } from "lucide-react"
+import { ArrowUpDown, ChevronDown, ChevronLeftIcon, ChevronRightIcon, CircleCheck, CircleX } from "lucide-react"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import { Checkbox } from "../ui/checkbox"
@@ -34,6 +34,8 @@ import {
 } from "../ui/table"
 import userProfile from '../../assets/images/userProfilePhotos/001.jpg';
 import { Link, useNavigate } from "react-router"
+import { Pagination } from "../common/Pagination"
+import { useState } from "react"
 
 enum Role {
     READER = 'READER',
@@ -114,6 +116,15 @@ export type User = {
 
 
 export function UserTable() {
+    const [currentPage, setCurrentPage] = useState(1);
+    // const itemsPerPage = 10;
+    // const totalItems = 100;
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+        // In a real application, you would fetch data for the new page here
+        console.log(`Fetching page ${page}`);
+    };
     const navigate = useNavigate();
 
     const handleUserProfile = (id: number) => {
@@ -138,7 +149,7 @@ export function UserTable() {
                     onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
                     aria-label="Select all"
                 />
-            ), 
+            ),
             cell: ({ row }) => (
                 <Checkbox
                     checked={row.getIsSelected()}
@@ -308,14 +319,20 @@ export function UserTable() {
                     {table.getFilteredSelectedRowModel().rows.length} of{" "}
                     {table.getFilteredRowModel().rows.length} row(s) selected.
                 </div>
-                <div className="space-x-2">
+                <Pagination
+                    totalItems={table.getFilteredRowModel().rows.length}
+                    itemsPerPage={table.getState().pagination.pageSize}
+                    currentPage={table.getState().pagination.pageIndex + 1}
+                    onPageChange={(page) => table.setPageIndex(page - 1)}
+                />
+                {/* <div className="space-x-2 flex">
                     <Button
                         variant="outline"
                         size="sm"
                         onClick={() => table.previousPage()}
                         disabled={!table.getCanPreviousPage()}
                     >
-                        Previous
+                        <ChevronLeftIcon />
                     </Button>
                     <Button
                         variant="outline"
@@ -323,9 +340,10 @@ export function UserTable() {
                         onClick={() => table.nextPage()}
                         disabled={!table.getCanNextPage()}
                     >
-                        Next
+                        <ChevronRightIcon />
                     </Button>
-                </div>
+                </div> */}
+
             </div>
         </div>
     )

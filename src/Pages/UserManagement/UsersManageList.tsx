@@ -1,11 +1,19 @@
 import { Loader2 } from "lucide-react";
 import { UserTable } from "../../components/UserManagement/UserTable";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
+import ErrorDisplay from "../../components/common/ErrorDisplay";
+import { Pagination } from "../../components/common/Pagination";
+import { useState } from "react";
+import ButtonComponent from "../../components/common/ButtonCompnent";
 
 export default function UsersManageList() {
+
+    
+
     return (
-        <div className="max-h-max flex-1 p-4 rounded-xl bg-muted/50" >
+        <div className="max-h-max flex-1 p-4 rounded-xl bg-muted/50">
             <UserTable />
-            {/* <Loader2 size={40} strokeWidth={2} opacity={0.5} className='m-auto animate-spin' /> */}
+            <ButtonComponent onClick={() => {}} variant="default">Add User</ButtonComponent>
         </div>
     )
-} 
+}

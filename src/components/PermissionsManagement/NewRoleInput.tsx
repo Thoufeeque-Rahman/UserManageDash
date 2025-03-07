@@ -34,6 +34,7 @@ import {
     TableRow,
 } from "../ui/table"
 import { Link } from 'react-router-dom'
+import { Pagination } from '../common/Pagination'
 
 const data: Payment[] = [
     {
@@ -53,7 +54,7 @@ const data: Payment[] = [
         role: 'head',
         name: "tropu",
         email: "tropu@example.com",
-    }
+    },
 ]
 
 export type Payment = {
@@ -64,28 +65,28 @@ export type Payment = {
 }
 
 export const columns: ColumnDef<Payment>[] = [
-    // {
-    //     id: "select",
-    //     header: ({ table }) => (
-    //         <Checkbox
-    //             checked={
-    //                 table.getIsAllPageRowsSelected() ? true :
-    //                     table.getIsSomePageRowsSelected() ? "indeterminate" : false
-    //             }
-    //             onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-    //             aria-label="Select all"
-    //         />
-    //     ),
-    //     cell: ({ row }) => (
-    //         <Checkbox
-    //             checked={row.getIsSelected()}
-    //             onCheckedChange={(value) => row.toggleSelected(!!value)}
-    //             aria-label="Select row"
-    //         />
-    //     ),
-    //     enableSorting: false,
-    //     enableHiding: false,
-    // },
+    {
+        id: "select",
+        header: ({ table }) => (
+            <Checkbox
+                checked={
+                    table.getIsAllPageRowsSelected() ? true :
+                        table.getIsSomePageRowsSelected() ? "indeterminate" : false
+                }
+                onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+                aria-label="Select all"
+            />
+        ),
+        cell: ({ row }) => (
+            <Checkbox
+                checked={row.getIsSelected()}
+                onCheckedChange={(value) => row.toggleSelected(!!value)}
+                aria-label="Select row"
+            />
+        ),
+        enableSorting: false,
+        enableHiding: false,
+    },
     {
         accessorKey: "name",
         header: "Name",
@@ -119,8 +120,6 @@ export const columns: ColumnDef<Payment>[] = [
         id: "actions",
         enableHiding: false,
         cell: ({ row }) => {
-            const payment = row.original
-
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -264,7 +263,13 @@ const NewRoleInput = () => {
                     {table.getFilteredSelectedRowModel().rows.length} of{" "}
                     {table.getFilteredRowModel().rows.length} row(s) selected.
                 </div>
-                <div className="space-x-2">
+                <Pagination
+                    totalItems={table.getFilteredRowModel().rows.length}
+                    itemsPerPage={table.getState().pagination.pageSize}
+                    currentPage={table.getState().pagination.pageIndex + 1}
+                    onPageChange={(page) => table.setPageIndex(page - 1)}
+                />
+                {/* <div className="space-x-2">
                     <Button
                         variant="outline"
                         size="sm"
@@ -281,7 +286,7 @@ const NewRoleInput = () => {
                     >
                         Next
                     </Button>
-                </div>
+                </div> */}
             </div>
         </div>
     )

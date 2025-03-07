@@ -14,7 +14,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "./ui/sidebar"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 // Menu items.
 type NavItem = {
@@ -24,6 +24,8 @@ type NavItem = {
   items?: NavItem[]
   isActive?: boolean
 }
+
+
 
 const data: { navMain: NavItem[] } = {
   navMain: [
@@ -36,7 +38,6 @@ const data: { navMain: NavItem[] } = {
           title: "Users",
           url: "/user-management/users",
           icon: Users,
-          // isActive: true,
         },
         {
           title: "User",
@@ -81,6 +82,8 @@ const data: { navMain: NavItem[] } = {
 }
 
 export function AppSidebar() {
+  const location = useLocation();
+
   return (
     <Sidebar>
       <SidebarHeader>
@@ -94,7 +97,7 @@ export function AppSidebar() {
               {data.navMain.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <Link to={item.url}>
-                    <SidebarMenuButton className="hover:text-[#e40404]" asChild>
+                    <SidebarMenuButton className="hover:text-[#e40404]" asChild isActive={location.pathname === item.url}>
                       <div className="flex">
                         <item.icon size={24} />
                         <span>{item.title}</span>
@@ -106,7 +109,7 @@ export function AppSidebar() {
                       {item.items.map((item) => (
                         <SidebarMenuSubItem key={item.title}>
                           <Link to={item.url}>
-                            <SidebarMenuSubButton className="hover:text-[#e40404]" asChild isActive={item.isActive ? true : false}>
+                            <SidebarMenuSubButton className="hover:text-[#e40404]" asChild isActive={location.pathname === item.url}>
                               <div className="flex">
                                 <item.icon size={20} />
                                 {item.title}
