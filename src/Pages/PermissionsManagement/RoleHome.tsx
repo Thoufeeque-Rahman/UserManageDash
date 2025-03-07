@@ -2,7 +2,7 @@ import { ShieldCheck, UserRoundCheck, UserRoundX, UsersRound } from "lucide-reac
 import PermissionsFormSection from "../../components/PermissionsManagement/PermissionsFormSection";
 import PermissionsTableSection from "../../components/PermissionsManagement/PermissionsTableSection";
 import PermissionsTopbar from "../../components/PermissionsManagement/PermissionsTopbar";
-import CountCard from "../../components/CountCard";
+import CountCard from "../../components/common/cards/CountCard";
 
 const items = [
     {

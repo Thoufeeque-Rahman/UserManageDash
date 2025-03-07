@@ -11,7 +11,7 @@ type CountCardProps = {
 
 export default function CountCard({ title, count, icon, percentage, color }: CountCardProps) {
     return (
-        <div className={`p-4 rounded-xl ${color}/50`}>
+        <div className={`p-4 rounded-xl ${color}`}>
             <div className="flex">
                 <h1 className='font-medium'>{title}</h1>
                 {React.createElement(icon, { size: 20, strokeWidth: 2, opacity: 0.5, className: 'ms-auto' })}

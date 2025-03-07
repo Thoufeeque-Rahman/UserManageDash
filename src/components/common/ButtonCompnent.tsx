@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 
 type ButtonProps = {
     children: React.ReactNode;
-    onClick: () => void;
+    onClick?: () => void;
     className?: string;
     disabled?: boolean;
     type?: "button" | "submit" | "reset";

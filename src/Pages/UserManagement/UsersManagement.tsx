@@ -1,5 +1,5 @@
 import { MonitorCheck, ShieldCheck, UserCheck, Users } from 'lucide-react'
-import CountCard from '../../components/CountCard';
+import CountCard from '../../components/common/cards/CountCard';
 import UserProfileCard from './UserProfileCard';
 import { Route, Routes } from 'react-router';
 import UsersGraph from './UsersGraph';

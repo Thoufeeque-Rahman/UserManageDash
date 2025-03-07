@@ -3,6 +3,7 @@ import { AppSidebar } from './components/app-sidebar'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from './components/ui/sidebar'
 import UsersManagement from './Pages/UserManagement/UsersManagement'
 import PermissionsManagement from './Pages/PermissionsManagement/PermissionsManagement'
+import ShowcasePage from './Pages/ShowcasePage'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
           <Routes> 
             <Route path='/user-management/*' element={<UsersManagement />} />
             <Route path='/permissions-management/*' element={<PermissionsManagement />} />
+            <Route path='/showcase-page' element={<ShowcasePage />} />
           </Routes>
         </SidebarInset>
       </SidebarProvider>

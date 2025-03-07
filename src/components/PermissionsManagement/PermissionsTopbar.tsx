@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { ShieldCheck, UserRoundCheck, UserRoundX, UsersRound } from "lucide-react"
-import CountCard from '../CountCard'
+import CountCard from '../common/cards/CountCard'
 
 // Menu items.
 // const items = [
