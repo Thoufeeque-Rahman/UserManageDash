@@ -82,7 +82,7 @@ export default function RolePermissions() {
                             <h3 className="text-md font-semibold">{category.charAt(0).toUpperCase() + category.slice(1)} Management</h3>
                             <label className="ml-2 flex items-center">
                                 <Checkbox checked={data.selectAll} onCheckedChange={() => handleCategorySelectAll(category)} />
-                                <span className="ml-2">Select All</span>
+                                <span className="ml-2 sr-only">Select All</span>
                             </label>
                         </div>
                         <CardContent className="flex gap-4 mt-4">

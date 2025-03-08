@@ -92,7 +92,7 @@ export default function UsersManageList() {
             {/* <DataTable columns={ } /> */}
             <DataTable
                 columns={[
-                    { header: () => <Checkbox />, accessor: (row) => row.id, cell: () => <Checkbox /> },
+                    // { header: () => <Checkbox />, accessor: (row) => row.id, cell: () => <Checkbox /> },
                     { header: "Name", accessor: "name" },
                     { header: "Email", accessor: "email", sortable: true },
                     { header: "Status", accessor: "status", cell: (info) => <StatusBadge status={info.getValue()} /> },
