@@ -4,12 +4,41 @@ import CountCard from "@/components/common/cards/CountCard";
 import { DataCard } from "@/components/common/cards/DataCard";
 import { DataTable } from "@/components/common/data/DataTable";
 import { StatusBadge } from "@/components/common/data/StatusBadge";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 import { Badge } from "@/components/ui/badge";
 import { User } from "lucide-react";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function ShowcasePage() {
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [isFade, setIsFade] = useState(false);
+
+    useEffect(() => {
+        setIsLoading(true);
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+            setIsFade(true);
+        }, 2000);
+
+        const fadeTimer = setTimeout(() => {
+            setIsFade(false);
+        }, 2500);
+
+        return () => {
+            clearTimeout(timer);
+        }
+
+
+    }, []);
+
+    if (isLoading) {
+        return <LoadingSpinner size="screen" />
+    }
+
     return (
-        <div className="p-6 space-y-4">
+        <div className={`p-6 space-y-4 transition-opacity duration-500 ease-in-out ${isFade ? 'opacity-0' : 'opacity-100'}`}>
             <h1 className="text-2xl font-semibold">Showcase Page</h1>
             <p className="mt-4 text-base text-gray-600 dark:text-gray-400">
                 This page is a showcase of the components and utilities that are available in the app.
@@ -26,26 +55,98 @@ export default function ShowcasePage() {
                 <CountCard title="Total Users" count={100} icon={User} color="bg-muted/50" />
                 <CountCard title="Total Users" count={100} icon={User} color="bg-muted/50" />
             </div>
-            <ContentPreviewCard
-                title="Content Preview"
-                description="This is a preview of the content card component."
-                image="http://unsplash.it/200/150?random&gravity=center"
-                imageAlt="Content preview"
-                footer={
-                    <div className="flex justify-between items-center">
-                        <div className="text-xs text-muted-foreground">2023-05-15</div>
-                        <StatusBadge status="Published" />
-                        {/* <Badge className="rounded-full bg-green-600/25 border-green-600/30 text-green-700" variant='outline'>Published</Badge> */}
-                    </div>
-                }
-                className="w-fit"
-            />
+            <div className="grid grid-cols-3 gap-4 ">
+                <ContentPreviewCard
+                    title="Content Preview"
+                    description="This is a preview of the content card component."
+                    image="http://unsplash.it/300/200?random&gravity=center"
+                    imageAlt="Content preview"
+                    footer={
+                        <div className="flex justify-between items-center">
+                            <div className="text-xs text-muted-foreground">2023-05-15</div>
+                            <StatusBadge status="Published" />
+                            {/* <Badge className="rounded-full bg-green-600/25 border-green-600/30 text-green-700" variant='outline'>Published</Badge> */}
+                        </div>
+                    }
+                    className="w-full"
+                />
+                <ContentPreviewCard
+                    title="Content Preview"
+                    description="This is a preview of the content card component."
+                    image="http://unsplash.it/300/200?random&gravity=center"
+                    imageAlt="Content preview"
+                    footer={
+                        <div className="flex justify-between items-center">
+                            <div className="text-xs text-muted-foreground">2023-05-15</div>
+                            <StatusBadge status="Published" />
+                            {/* <Badge className="rounded-full bg-green-600/25 border-green-600/30 text-green-700" variant='outline'>Published</Badge> */}
+                        </div>
+                    }
+                    className="w-full"
+                />
+                <ContentPreviewCard
+                    title="Content Preview"
+                    description="This is a preview of the content card component."
+                    image="http://unsplash.it/300/200?random&gravity=center"
+                    imageAlt="Content preview"
+                    footer={
+                        <div className="flex justify-between items-center">
+                            <div className="text-xs text-muted-foreground">2023-05-15</div>
+                            <StatusBadge status="Published" />
+                            {/* <Badge className="rounded-full bg-green-600/25 border-green-600/30 text-green-700" variant='outline'>Published</Badge> */}
+                        </div>
+                    }
+                    className="w-full"
+                />
+                <ContentPreviewCard
+                    title="Content Preview"
+                    description="This is a preview of the content card component."
+                    image="http://unsplash.it/300/200?random&gravity=center"
+                    imageAlt="Content preview"
+                    footer={
+                        <div className="flex justify-between items-center">
+                            <div className="text-xs text-muted-foreground">2023-05-15</div>
+                            <StatusBadge status="Published" />
+                            {/* <Badge className="rounded-full bg-green-600/25 border-green-600/30 text-green-700" variant='outline'>Published</Badge> */}
+                        </div>
+                    }
+                    className="w-full"
+                />
+                <ContentPreviewCard
+                    title="Content Preview"
+                    description="This is a preview of the content card component."
+                    image="http://unsplash.it/300/200?random&gravity=center"
+                    imageAlt="Content preview"
+                    footer={
+                        <div className="flex justify-between items-center">
+                            <div className="text-xs text-muted-foreground">2023-05-15</div>
+                            <StatusBadge status="Published" />
+                            {/* <Badge className="rounded-full bg-green-600/25 border-green-600/30 text-green-700" variant='outline'>Published</Badge> */}
+                        </div>
+                    }
+                    className="w-full"
+                />
+                <ContentPreviewCard
+                    title="Content Preview"
+                    description="This is a preview of the content card component."
+                    image="http://unsplash.it/300/200?random&gravity=center"
+                    imageAlt="Content preview"
+                    footer={
+                        <div className="flex justify-between items-center">
+                            <div className="text-xs text-muted-foreground">2023-05-15</div>
+                            <StatusBadge status="Published" />
+                            {/* <Badge className="rounded-full bg-green-600/25 border-green-600/30 text-green-700" variant='outline'>Published</Badge> */}
+                        </div>
+                    }
+                    className="w-full"
+                />
+            </div>
             <div className="mt-8">
                 <h3 className="text-lg font-medium mb-3">Data Tables</h3>
                 <DataTable
                     columns={[
                         { header: "Name", accessor: "name" },
-                        { header: "Email", accessor: "email" },
+                        { header: "Email", accessor: "email", sortable: true },
                         { header: "Status", accessor: "status", cell: (info) => <StatusBadge status={info.getValue()} /> },
                         { header: "Role", accessor: "role" },
                         { header: "Last Login", accessor: "lastLogin" },
@@ -61,6 +162,7 @@ export default function ShowcasePage() {
                     searchable={true}
                 />
             </div>
+            {/* <LoadingSpinner /> */}
         </div>
     );
 }

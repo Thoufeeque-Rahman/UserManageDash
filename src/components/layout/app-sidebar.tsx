@@ -3,6 +3,7 @@ import { Home, Lock, Scale, Shield, User, UserRoundCog, Users } from "lucide-rea
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -13,8 +14,10 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "./ui/sidebar"
+  SidebarRail,
+} from "../ui/sidebar"
 import { Link, useLocation } from "react-router-dom"
+import { NavUser } from "./nav-user"
 
 // Menu items.
 type NavItem = {
@@ -25,9 +28,18 @@ type NavItem = {
   isActive?: boolean
 }
 
+type User = {
+  name: string
+  email: string
+  avatar: string
+}
 
-
-const data: { navMain: NavItem[] } = {
+const data: { navMain: NavItem[], user: User } = {
+  user: {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "https://avatars.githubusercontent.com/u/78486724?v=4",
+  },
   navMain: [
     {
       title: "User Management",
@@ -62,6 +74,11 @@ const data: { navMain: NavItem[] } = {
           icon: Lock,
         },
       ]
+    },
+    {
+      title: "Showcase",
+      url: "/showcase",
+      icon: Home,
     },
     // {
     //   title: "User",
@@ -126,6 +143,10 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={data.user} />
+      </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
   )
 }

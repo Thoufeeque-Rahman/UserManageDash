@@ -28,7 +28,7 @@ export function ContentPreviewCard({
     <div 
       className={cn(
         "rounded-lg border border-border/50 bg-card overflow-hidden transition-all animate-fade-in",
-        "shadow-sm hover:shadow-md",
+        // "shadow-sm hover:shadow-md",
         glass && "bg-white/90 dark:bg-black/60 backdrop-blur-md border-white/20 dark:border-white/10",
         onClick && "cursor-pointer hover:-translate-y-0.5",
         className

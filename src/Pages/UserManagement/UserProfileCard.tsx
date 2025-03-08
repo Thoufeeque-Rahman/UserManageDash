@@ -17,7 +17,7 @@ const data: User[] = [
         id: 1,
         name: 'Thoufeeque Rahman',
         email: 'rahman@gmail.com',
-        profile_image_url: userProfile,
+        profile_image_url: 'https://avatars.githubusercontent.com/u/78486724?v=4',
         user_details: {
             mobile: '9876543210',
             address: 'Kerala, India',

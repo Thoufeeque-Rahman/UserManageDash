@@ -10,6 +10,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  Column,
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown } from "lucide-react";
 import { Button } from "../ui/button";
@@ -22,7 +23,7 @@ import {
 } from "../ui/dropdown-menu";
 import { Input } from "../ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableCaption } from "../ui/table";
-import { Pagination } from "../common/Pagination";
+import { Pagination } from "./Pagination";
 
 interface DataTableProps {
   data: any[];
@@ -50,7 +51,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data, headers }) => {
           onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
           aria-label="Select all"
         />
-      ),
+      ), 
       cell: ({ row }) => (
         <Checkbox
           checked={row.getIsSelected()}
@@ -63,15 +64,15 @@ export const DataTable: React.FC<DataTableProps> = ({ data, headers }) => {
     },
     ...headers.map((header) => ({
       accessorKey: header.accessorKey,
-      header: ({ column }) => (
+      header: ({ column }: { column: Column<any> }) => (
         <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
           {header.title}
           <ArrowUpDown />
         </Button>
-      ),
-      cell: ({ row }) => <div className="capitalize">{row.getValue(header.accessorKey)}</div>,
+      ), 
+      cell: ({ row }: { row: any }) => <div className="capitalize">{row.getValue(header.accessorKey)}</div>,
     })),
-  ];
+  ]; 
 
   const table = useReactTable({
     data,

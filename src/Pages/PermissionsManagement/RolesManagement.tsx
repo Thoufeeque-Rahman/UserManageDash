@@ -2,7 +2,7 @@ import * as React from 'react'
 import PermissionsTopbar from '../../components/PermissionsManagement/PermissionsTopbar'
 import NewRoleInput from '../../components/PermissionsManagement/NewRoleInput'
 import { KeyRound, Shield, ShieldCheck, ShieldX, UserRoundCheck, UserRoundX, UsersRound } from 'lucide-react'
-import DataTable from '../../components/common/DataTable'
+import DataTable from '../../components/common/DataTable2'
 
 const items = [
   {

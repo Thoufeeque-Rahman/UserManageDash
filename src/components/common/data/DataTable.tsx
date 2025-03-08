@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react";
+import { ArrowUpDown, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Filter } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { SearchField } from "../forms/SearchField";
 
@@ -153,15 +153,18 @@ export function DataTable<T>({
                 typeof column.accessor === "function" &&
                 sortConfig.key.toString() === column.accessor.toString());
 
-        if (!isSorted) return <ChevronDown size={16} className="text-muted-foreground opacity-30" />;
+        if (!isSorted) return <ArrowUpDown size={16} className="text-muted-foreground opacity-30" />;
 
         return sortConfig.direction === "asc" ? (
-            <ChevronUp size={16} className="text-primary" />
+            // <ChevronUp size={16} className="" />
+            <ArrowUpDown size={16} className="text-muted-foreground opacity-30" />
         ) : (
-            <ChevronDown size={16} className="text-primary" />
+            // <ChevronDown size={16} className="" />
+            <ArrowUpDown size={16} className="text-muted-foreground opacity-30" />
         );
     };
-
+ 
+    
     return (
         <div className={cn("w-full space-y-4 animate-fade-in", className)}>
             {searchable && (
@@ -188,12 +191,12 @@ export function DataTable<T>({
                         <thead>
                             <tr className="border-b border-border/50 bg-accent/30">
                                 {columns.map((column, index) => (
-                                    <th
+                                    <th 
                                         key={index}
                                         className={cn(
-                                            "px-4 py-3 text-left text-sm font-medium text-foreground/80",
+                                            "px-4 py-3 text-left text-sm font-medium text-thelicham/75",
                                             column.sortable && "cursor-pointer select-none hover:text-primary transition-colors",
-                                            column.className
+                                            column.className 
                                         )}
                                         onClick={() => handleSort(column)}
                                     >
