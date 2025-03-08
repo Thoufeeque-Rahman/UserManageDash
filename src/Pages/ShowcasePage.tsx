@@ -4,7 +4,7 @@ import CountCard from "@/components/common/cards/CountCard";
 import { DataCard } from "@/components/common/cards/DataCard";
 import { DataTable } from "@/components/common/data/DataTable";
 import { StatusBadge } from "@/components/common/data/StatusBadge";
-import LoadingSpinner from "@/components/common/LoadingSpinner";
+import LoadingSpinner from "@/components/common/feedback/LoadingSpinner";
 import { Badge } from "@/components/ui/badge";
 import { User } from "lucide-react";
 import { useState } from "react";

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AlertTriangle, ArrowLeft, RefreshCw } from "lucide-react";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "./feedback/LoadingSpinner";
 
 interface ErrorDisplayProps {
   title?: string;

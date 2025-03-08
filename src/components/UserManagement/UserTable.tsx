@@ -34,8 +34,8 @@ import {
 } from "../ui/table"
 import userProfile from '../../assets/images/userProfilePhotos/001.jpg';
 import { Link, useNavigate } from "react-router"
-import { Pagination } from "../common/Pagination"
 import { useState } from "react"
+import { Pagination } from "../common/data/Pagination"
 
 enum Role {
     READER = 'READER',

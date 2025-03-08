@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { SearchField } from "../forms/SearchField";
 
 interface Column<T> {
-    header: string;
+    header: string | (({ table }: { table: any; }) => React.ReactNode);
     accessor: keyof T | ((row: T) => any);
     cell?: (info: { getValue: () => any, row: T }) => React.ReactNode;
     sortable?: boolean;
@@ -194,17 +194,21 @@ export function DataTable<T>({
                                     <th 
                                         key={index}
                                         className={cn(
-                                            "px-4 py-3 text-left text-sm font-medium text-thelicham/75",
+                                            "px-4 py-2 text-left text-sm font-medium text-thelicham/75",
                                             column.sortable && "cursor-pointer select-none hover:text-primary transition-colors",
                                             column.className 
                                         )}
                                         onClick={() => handleSort(column)}
                                     >
                                         <div className="flex items-center space-x-1">
-                                            <span>{column.header}</span>
+                                            <span> 
+                                                {typeof column.header === "function"
+                                                    ? column.header({ table: {} })
+                                                    : column.header}
+                                            </span>
                                             {column.sortable && <span>{getSortIcon(column)}</span>}
                                         </div>
-                                    </th>
+                                    </th> 
                                 ))}
                             </tr>
                         </thead>
@@ -224,7 +228,7 @@ export function DataTable<T>({
                                     {columns.map((column, colIndex) => (
                                         <td
                                             key={colIndex}
-                                            className={cn("px-4 py-3 text-sm", column.className)}
+                                            className={cn("px-4 py-2 text-sm", column.className)}
                                         >
                                             {renderCell(row, column)}
                                         </td>

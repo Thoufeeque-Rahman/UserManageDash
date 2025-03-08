@@ -34,7 +34,7 @@ import {
     TableRow,
 } from "../ui/table"
 import { Link } from 'react-router-dom'
-import { Pagination } from '../common/Pagination'
+import { Pagination } from '../common/data/Pagination'
 
 const data: Payment[] = [
     {
